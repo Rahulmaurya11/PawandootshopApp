@@ -22,14 +22,14 @@ public class TokenLogService {
 	@Autowired
 	TokenLogRepository tokenLogRepository;
 
-	public String generateToken(Long id, String email) {
+	public String generateToken(Long id, String username) {
 
 		String token = UUID.randomUUID().toString();
 
-		LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(1);
+		LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(2);
 
 		// Call method to add token log to database
-		addlog(token, id, email, expiryTime);
+		addlog(token, id, username, expiryTime);
 
 		return token;
 
@@ -71,7 +71,7 @@ public class TokenLogService {
 	 * 
 	 */
 
-	public TokenLog addlog(String token, Long id, String email, LocalDateTime expiryTime) {
+	public TokenLog addlog(String token, Long id, String username, LocalDateTime expiryTime) {
 
 		TokenLog t1 = new TokenLog();
 		t1.setLinkId(id);
@@ -80,7 +80,7 @@ public class TokenLogService {
 		t1.setCreatedAt(LocalDateTime.now());
 		t1.setValid(true);
 		t1.setPurpose(Purpose.LOGIN);
-		t1.setUserName(email);
+		t1.setUserName(username);
 		t1.setExpiryTime(expiryTime);
 		// Set expiry time
 

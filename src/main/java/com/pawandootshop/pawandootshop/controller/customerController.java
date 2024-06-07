@@ -19,15 +19,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/customer")
-public class customerController {
+public class CustomerController {
 
 	@Autowired
 	customerService service;
+	
+	
 
 	@GetMapping
 	public List<Customer> getallCustomer()
 	{
-		
+		System.out.println("in get block");
 		return service.getallCustomer();
 
 	}
@@ -36,10 +38,10 @@ public class customerController {
 	
 	public Customer getcustomerbyid(@PathVariable Long id ) 
 	{
+	
 		return service.getcustomerbyid(id);
+	
 	}
-	
-	
 	
 
 	@PostMapping

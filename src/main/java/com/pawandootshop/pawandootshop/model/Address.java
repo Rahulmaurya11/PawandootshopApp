@@ -24,9 +24,9 @@ public class Address {
     private String country;
 
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+   // @OneToOne
+  //  @JoinColumn(name = "customer_id")
+  //  private Customer customer;
     
 
     // Getters and setters
@@ -37,12 +37,14 @@ public class Address {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	/*
 	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	*/
 	public String getStreetAddress() {
 		return streetAddress;
 	}

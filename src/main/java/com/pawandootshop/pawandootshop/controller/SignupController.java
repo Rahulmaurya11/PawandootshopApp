@@ -25,49 +25,31 @@ public class SignupController {
 	public String homepage () {
 		return "homepage";
 	}
-	
+
     @GetMapping("/signup")
     public String showSignUpForm(Model model) {
         model.addAttribute("customer", new Customer());
         
         return "signup";
+    
     }
 
-    /*
-    @PostMapping("/signup")
-    public String submitSignUpForm(@ModelAttribute Customer customer, Model model) {
+    @PostMapping("/SignUpSubmit")
     
+    public String submitSignUpForm(@ModelAttribute Customer customer, Model model) 
+    
+    {
+    	
     	// Process the customer data (save to the database)
     	
-    	customer.setFirstName(customer.getFirstName());
-    	customer.setLastName(customer.getLastName());
-    	customer.setEmail(customer.getEmail());
-    	customer.setPhoneNumber(customer.getPhoneNumber());
-    	customer.setPassword(passwordencoder.encode(customer.getPassword()));    
-    	customer.setUserName(customer.getUserName());
-    	repository.save(customer);
-        model.addAttribute("customer", customer);
-        
-        return "signupSuccess";
-        
-    }
-*/
-    
-
-    @PostMapping("/signup")
-    public String submitSignUpForm(@ModelAttribute Customer customer, Model model) {
-    
-    	// Process the customer data (save to the database)
     	
     	customer.setPassword(passwordencoder.encode(customer.getPassword()));    
     	repository.save(customer);
-        model.addAttribute("customer", customer);
+        model.addAttribute("customer", customer); 
         
-       return "signupSuccess";   
-    }
-    
-    
-    
+        return "signupSuccess"; 
+   
+    }  
     
 }
 

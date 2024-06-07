@@ -3,11 +3,15 @@ package com.pawandootshop.pawandootshop.controller;
 import java.time.LocalDateTime;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -17,8 +21,11 @@ import com.pawandootshop.pawandootshop.DTO.responseDTO;
 import com.pawandootshop.pawandootshop.model.Customer;
 import com.pawandootshop.pawandootshop.model.TokenLog;
 import com.pawandootshop.pawandootshop.repository.TokenLogRepository;
+//import com.pawandootshop.pawandootshop.service.JwtService;
 import com.pawandootshop.pawandootshop.service.TokenLogService;
 import com.pawandootshop.pawandootshop.service.customerService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -35,8 +42,11 @@ public class AuthController {
 	TokenLogRepository repository ; 
 	
 	
+	//JwtService jwtservice;
+	
+	
 	@PostMapping("/customerLogin")
-	public responseDTO customerLogin(@RequestBody requestDTO loginRequestDto) {
+	public responseDTO customerLogin(@Valid @RequestBody requestDTO loginRequestDto) {
 
 	
 		responseDTO  loginResponseDto = new responseDTO();
@@ -53,6 +63,10 @@ public class AuthController {
 			
 		 
 		} 
+		// String jwttoken = jwtservice.generateToken(customer);
+		// Long expiration = jwtservice.getExpirationTime();
+
+
 		
       String token = tokenlogservice.generateToken(customer.getId(), customer.getUserName());
 
@@ -66,6 +80,7 @@ public class AuthController {
 		loginResponseDto.setStatus(true);
 		loginResponseDto.setMessage("Login Successfully");
 		loginResponseDto.setToken(token);
+		//loginResponseDto.setExpiresin(expiration);
 		
 		// Response preparation end
 
@@ -76,7 +91,7 @@ public class AuthController {
 	
 		
 	@PostMapping("/verifytoken")
-	public boolean   verifytoken (@RequestHeader("Authorization") String  token)
+	public  boolean validateToken (@RequestHeader("Authorization") String  token)
 	
 	{
 		
@@ -91,6 +106,19 @@ public class AuthController {
 	        
 	   return false ;
 	
+	
 	}
+	
+	
+	@GetMapping("converttohash")
+	public String convertToHash(@RequestParam String clearText) {
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String cipherText = passwordEncoder.encode(clearText);
+
+		return cipherText;
+
+	}
+
 	
 }

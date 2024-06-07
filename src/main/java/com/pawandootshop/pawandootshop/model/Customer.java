@@ -1,6 +1,14 @@
 package com.pawandootshop.pawandootshop.model;
 
+import java.util.Collection;
+
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,10 +22,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Entity
-public class Customer {
+public class Customer implements UserDetails    {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,9 +50,9 @@ public class Customer {
     @Column(unique = true)
     private String userName;
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    @NotNull(message = "Address is mandatory")
-    private Address address;
+   //@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+   //@NotNull(message = "Address is mandatory")
+   //  private Address address;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders;
@@ -90,7 +97,7 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+/*
     public Address getAddress() {
         return address;
     }
@@ -98,7 +105,7 @@ public class Customer {
     public void setAddress(Address address) {
         this.address = address;
     }
-
+*/
     public List<Order> getOrders() {
         return orders;
     }
@@ -122,4 +129,41 @@ public class Customer {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return List.of();
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+       
 }

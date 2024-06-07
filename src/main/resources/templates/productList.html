@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Loginsuccess Landing Page</title>
+    
+ 
+  <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container styles */
+       .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Highlight even rows */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Additional spacing around the container */
+       .container {
+            margin: 30px auto;
+        }
+        
+        
+   .centered-orange-button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgb(128, 128, 255);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+
+     
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product List</h1>
+        <form action="#" th:action="@{/saveOrderItems}" th:object="${Product}" method="post">
+			
+            <p1></p1>
+            <table>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity Available</th>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td><input type="checkbox" name="selectedProducts" th:value="${product.id}" /></td>
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.quantityAvailable}"></td>
+                </tr>
+            </table>
+           <input type="submit" value="Select and Place Order" class="centered-orange-button" />
+        </form>
+    </div>
+    <div th:if="${response!= null}">
+        <p th:text="${response.message}"></p>
+        <p th:text="${response.token}"></p>
+    </div>
+</body>
+</html>
+

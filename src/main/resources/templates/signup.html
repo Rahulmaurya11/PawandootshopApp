@@ -1,88 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Customer Sign Up</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        div {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        input[type="text"], input[type="email"], input[type="password"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: #28a745;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #218838;
-        }
-    </style>
+	<title>Customer Sign Up</title>	   
+
+	
+	<style>
+		
+
+		body {
+			font-family: Arial, sans-serif;
+			background: #f4f4f4;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+
+		form {
+			background: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			width: 300px;
+		}
+
+		div {
+			margin-bottom: 15px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+			color: #333;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
+			width: calc(100% - 22px);
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			border: none;
+			background: #28a745;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background: #218838;
+		}
+		
+
+
+	</style>
+
+	
 </head>
+
 <body>
-    <form th:action="@{/signup}" th:object="${customer}" method="post">
-        <h1>Customer Sign Up</h1>
-        <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" th:field="*{firstName}" />
-        </div>
-        <div>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" th:field="*{lastName}" />
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}" />
-        </div>
-        <div>
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}" />
-        </div>
-        <div>
-            <label for="userName">Username:</label>
-            <input type="text" id="userName" th:field="*{userName}" />
-        </div>
-        <div>
-            <button type="submit">Sign Up</button>
-        </div>
-    </form>
+
+	<form th:action="@{/SignUpSubmit}" th:object="${customer}" method="post">
+		<h1>Customer Sign Up</h1>
+		<div>
+			<label for="firstName">First Name:</label>
+			<input type="text" id="firstName" th:field="*{firstName}" />
+		</div>
+		<div>
+			<label for="lastName">Last Name:</label>
+			<input type="text" id="lastName" th:field="*{lastName}" />
+		</div>
+		<div>
+			<label for="email">Email:</label>
+			<input type="email" id="email" th:field="*{email}" />
+		</div>
+		<div>
+			<label for="phoneNumber">Phone Number:</label>
+			<input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+		</div>
+		<div>
+			<label for="password">Password:</label>
+			<input type="password" id="password" th:field="*{password}" />
+		</div>
+		<div>
+			<label for="userName">Username:</label>
+			<input type="text" id="userName" th:field="*{userName}" />
+		</div>
+		<div>
+			<button type="submit">Sign Up</button>
+		</div>
+		<div>
+			<a href="/login" class="link">Go to Login page </a>
+		</div>
+	</form>
+
 </body>
+
 </html>

@@ -12,6 +12,6 @@ import com.pawandootshop.pawandootshop.model.Customer;
 @Repository
 public interface customerRepository extends JpaRepository<Customer,Long> {
 
-	Optional<Customer> findByuserName(String username); 
+	Optional<Customer> findByuserName(String userName);
 	
 }
