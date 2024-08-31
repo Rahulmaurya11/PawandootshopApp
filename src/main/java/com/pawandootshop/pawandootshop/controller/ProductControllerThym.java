@@ -22,10 +22,9 @@ public class ProductControllerThym {
 	@GetMapping("/getallproduct")
 	public String getallproduct(Model model) {
 
-		List<Product> products = productservice.getAllProducts();
+		List<Product> products = productservice.getAllProductsThym();
 
 		model.addAttribute("products", products);
-	    
 
 		return "productList";
 

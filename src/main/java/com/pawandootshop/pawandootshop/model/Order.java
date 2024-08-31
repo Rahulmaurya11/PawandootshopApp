@@ -1,9 +1,11 @@
 package com.pawandootshop.pawandootshop.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,12 +27,25 @@ public class Order {
     @JoinColumn(name ="customer_id")
     private Customer customer;
 
-    private LocalDate orderDate;
-    private double totalAmount;
+    @Column(name = "total_price")
+    private Double totalPrice;
+    
+    @Column(name = "created_date")
+    private Date createdDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
     
+
+	
+
+    // Getters and setters
+    
+    
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;
@@ -48,20 +63,22 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public LocalDate getOrderDate() {
-		return orderDate;
+
+
+	public Double getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
-	public double getTotalAmount() {
-		return totalAmount;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public List<OrderItem> getOrderItems() {
@@ -72,7 +89,17 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-    // Getters and setters
+	public Order(Long id, Customer customer, Double totalPrice, Date createdDate, List<OrderItem> orderItems) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.totalPrice = totalPrice;
+		this.createdDate = createdDate;
+		this.orderItems = orderItems;
+	}
+
+	
+
     
     
     

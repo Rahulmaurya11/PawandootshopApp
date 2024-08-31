@@ -2,13 +2,11 @@ package com.pawandootshop.pawandootshop.model;
 
 import java.util.Collection;
 
+
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,7 +22,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
-public class Customer implements UserDetails    {
+public class Customer implements UserDetails  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +38,6 @@ public class Customer implements UserDetails    {
     private String email;
 
     @NotBlank(message = "Phone number is mandatory")
-    @Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Phone number is invalid")
     private String phoneNumber;
 
     @NotBlank(message = "Password is mandatory")
@@ -58,6 +55,8 @@ public class Customer implements UserDetails    {
     private List<Order> orders;
 
     // Getters and setters
+    
+    
     public Long getId() {
         return id;
     }
@@ -110,7 +109,11 @@ public class Customer implements UserDetails    {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
@@ -122,10 +125,6 @@ public class Customer implements UserDetails    {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -133,13 +132,13 @@ public class Customer implements UserDetails    {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return List.of();
+		return null;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return userName;
+		return this.email;
 	}
 
 	@Override
@@ -165,5 +164,6 @@ public class Customer implements UserDetails    {
 		// TODO Auto-generated method stub
 		return true;
 	}
-       
+
+	       
 }

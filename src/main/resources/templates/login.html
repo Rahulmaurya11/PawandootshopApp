@@ -47,7 +47,7 @@
 						aria-current="page" href="/login"><i
 							class="fa-solid fa-right-to-bracket"></i> LOGIN</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/register">REGISTER</a></li>
+						aria-current="page" href="/signup">REGISTER</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">ADMIN</a></li>
@@ -128,8 +128,9 @@
             color: green;
             margin-bottom: 15px;
         }
-        
+                
     </style>
+    
 </head>
 <body>
     <div class="container">  
@@ -138,7 +139,7 @@
     <form action="#" th:action="@{/Customerlogin}" th:object="${request}" method="post">
         <div>
             <label for="userName">Username:</label>
-            <input type="text" id="userName" th:field="*{userName}" />
+            <input type="text" id="userName" th:field="*{email}" />
         </div>
         <div>
             <label for="password">Password:</label>
@@ -151,8 +152,8 @@
     </form>
     
     <div th:if="${response != null}">
-        <p th:text="${response.message}"></p>
-        <p th:text="${response.token}"></p>
+        <p th:text="${response.username}"></p>
+        <p th:text="${response.jwttoken}"></p>
       
     </div>
   

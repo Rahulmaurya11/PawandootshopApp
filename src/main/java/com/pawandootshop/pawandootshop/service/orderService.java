@@ -32,7 +32,7 @@ public class orderService {
     	return orderRepository.save(order);
 
     }
-
+/*
     
     public Order updateOrder(Long id, Order orderDetails) 
     {
@@ -46,6 +46,8 @@ public class orderService {
         }
         return null;
     }
+  */
+    
     
     public void deleteOrder(Long id) {
     

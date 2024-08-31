@@ -2,7 +2,6 @@ package com.pawandootshop.pawandootshop.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,51 +22,39 @@ public class CustomerController {
 
 	@Autowired
 	customerService service;
-	
-	
 
 	@GetMapping
-	public List<Customer> getallCustomer()
-	{
+	public List<Customer> getallCustomer() {
 		System.out.println("in get block");
 		return service.getallCustomer();
 
 	}
-	
+
 	@GetMapping("/{id}")
-	
-	public Customer getcustomerbyid(@PathVariable Long id ) 
-	{
-	
+
+	public Customer getcustomerbyid(@PathVariable Long id) {
+
 		return service.getcustomerbyid(id);
-	
+
 	}
-	
 
 	@PostMapping
-	public Customer createCustomer(@RequestBody Customer custdetails)
-	{
-		
-		return service.addCustomer(custdetails); 
-		
-	}
-	
-	
-	@PutMapping("/{id}")
-	public Customer updateCustomer (@PathVariable Long id , @RequestBody Customer custdetails)
-	{
-		return service.updateCustomer(id,custdetails);
-		
-	}
-	
+	public Customer createCustomer(@RequestBody Customer custdetails) {
 
-	
-	
+		return service.addCustomer(custdetails);
+
+	}
+
+	@PutMapping("/{id}")
+	public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer custdetails) {
+		return service.updateCustomer(id, custdetails);
+
+	}
+
 	@DeleteMapping
-	public ResponseEntity<?> deleteCustomer(@PathVariable Long id )
-	{
+	public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
 		return service.deleteCustomer(id);
-		
+
 	}
 
 }

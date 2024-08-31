@@ -2,10 +2,15 @@ package com.pawandootshop.pawandootshop.service;
 
 import java.util.List;
 
+
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,7 +20,7 @@ import com.pawandootshop.pawandootshop.model.Customer;
 import com.pawandootshop.pawandootshop.repository.customerRepository;
 
 @Service
-public class customerService {
+public class customerService implements UserDetailsService {
 
 	@Autowired
 	customerRepository repository;
@@ -25,6 +30,9 @@ public class customerService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
+	
 
 	public List<Customer> getallCustomer() {
 
@@ -107,7 +115,13 @@ public class customerService {
 
 		return customer1;
 	}
-	
-	
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
+	Customer user =  repository.findByEmail(username).orElseThrow(()->new RuntimeException("user not found"));
+		return user;
+	}
+
+	
 }
